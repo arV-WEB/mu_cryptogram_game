@@ -1,0 +1,294 @@
+{
+  "2020": [
+    {
+      "id": 1,
+      "name": "David de Gea",
+      "position": "GK",
+      "number": 1,
+      "year": 2020,
+      "image": "david_degea.jpg",
+      "encryption": "GKDG1",
+      "difficulty": "easy",
+      "nationality": "Spain"
+    },
+    {
+      "id": 2,
+      "name": "Harry Maguire",
+      "position": "CB",
+      "number": 5,
+      "year": 2020,
+      "image": "goat_maguire.jpg",
+      "encryption": "CBHM5",
+      "difficulty": "easy",
+      "nationality": "England"
+    },
+    {
+      "id": 3,
+      "name": "Bruno Fernandes",
+      "position": "CM",
+      "number": 18,
+      "year": 2020,
+      "image": "bruno_fernandes.jpg",
+      "encryption": "CMBF8",
+      "difficulty": "easy",
+      "nationality": "Portugal"
+    },
+    {
+      "id": 4,
+      "name": "Marcus Rashford",
+      "position": "LW",
+      "number": 10,
+      "year": 2020,
+      "image": "Marcus_Rashford.jpg",
+      "encryption": "LWMR0",
+      "difficulty": "medium",
+      "nationality": "England"
+    },
+    {
+      "id": 5,
+      "name": "Paul Pogba",
+      "position": "CM",
+      "number": 6,
+      "year": 2020,
+      "image": "pogba.jpg",
+      "encryption": "CMPP6",
+      "difficulty": "medium",
+      "nationality": "France"
+    },
+    {
+      "id": 6,
+      "name": "Anthony Martial",
+      "position": "CF",
+      "number": 9,
+      "year": 2020,
+      "image": "Anthony_Martial.jpg",
+      "encryption": "CFAM9",
+      "difficulty": "medium",
+      "nationality": "France"
+    },
+    {
+      "id": 7,
+      "name": "Donny van de Beek",
+      "position": "CM",
+      "number": 34,
+      "year": 2020,
+      "image": "donny_van_de_beek.jpg",
+      "encryption": "CMDB4",
+      "difficulty": "hard",
+      "nationality": "Netherlands"
+    },
+    {
+      "id": 8,
+      "name": "Alex Telles",
+      "position": "LB",
+      "number": 27,
+      "year": 2020,
+      "image": "Alex_telles.jpg",
+      "encryption": "LBAT7",
+      "difficulty": "hard",
+      "nationality": "Brazil"
+    },
+    {
+      "id": 9,
+      "name": "Edinson Cavani",
+      "position": "CF",
+      "number": 7,
+      "year": 2020,
+      "image": "Edinson_Cavani.jpg",
+      "encryption": "CFEC7",
+      "difficulty": "hard",
+      "nationality": "Uruguay"
+    },
+    {
+      "id": 10,
+      "name": "Phil Jones",
+      "position": "CB",
+      "number": 4,
+      "year": 2020,
+      "image": "PhilJones.jpg",
+      "encryption": "CBPJ4",
+      "difficulty": "hard",
+      "nationality": "England"
+    }
+  ],
+  "2021": [
+    {
+      "id": 1,
+      "name": "Cristiano Ronaldo",
+      "position": "CF",
+      "number": 7,
+      "year": 2021,
+      "image": "ronaldo.jpg",
+      "encryption": "CFCR7",
+      "difficulty": "easy",
+      "nationality": "Portugal"
+    },
+    {
+      "id": 2,
+      "name": "Raphaël Varane",
+      "position": "CB",
+      "number": 19,
+      "year": 2021,
+      "image": "varane.jpg",
+      "encryption": "CBRV9",
+      "difficulty": "easy",
+      "nationality": "France"
+    },
+    {
+      "id": 3,
+      "name": "Jadon Sancho",
+      "position": "RW",
+      "number": 25,
+      "year": 2021,
+      "image": "sancho.jpg",
+      "encryption": "RWJS5",
+      "difficulty": "medium",
+      "nationality": "England"
+    },
+    {
+      "id": 4,
+      "name": "Dean Henderson",
+      "position": "GK",
+      "number": 26,
+      "year": 2021,
+      "image": "dean_henderson.jpg",
+      "encryption": "GKDH6",
+      "difficulty": "medium",
+      "nationality": "England"
+    },
+    {
+      "id": 5,
+      "name": "Victor Lindelöf",
+      "position": "CB",
+      "number": 2,
+      "year": 2021,
+      "image": "Lindelof.jpg",
+      "encryption": "CBVL2",
+      "difficulty": "medium",
+      "nationality": "Sweden"
+    },
+    {
+      "id": 6,
+      "name": "Aaron Wan-Bissaka",
+      "position": "RB",
+      "number": 29,
+      "year": 2021,
+      "image": "Aaron_Wan_Bissaka.jpg",
+      "encryption": "RBAW9",
+      "difficulty": "hard",
+      "nationality": "England"
+    },
+    {
+      "id": 7,
+      "name": "Fred",
+      "position": "CM",
+      "number": 17,
+      "year": 2021,
+      "image": "Fred.jpg",
+      "encryption": "CMFR7",
+      "difficulty": "hard",
+      "nationality": "Brazil"
+    },
+    {
+      "id": 8,
+      "name": "Scott McTominay",
+      "position": "CM",
+      "number": 39,
+      "year": 2021,
+      "image": "McTominay.jpg",
+      "encryption": "CMSM9",
+      "difficulty": "hard",
+      "nationality": "Scotland"
+    }
+  ],
+  "2022": [
+    {
+      "id": 1,
+      "name": "Lisandro Martínez",
+      "position": "CB",
+      "number": 6,
+      "year": 2022,
+      "image": "Lisandro_Martinez.jpg",
+      "encryption": "CBLM6",
+      "difficulty": "easy",
+      "nationality": "Argentina"
+    },
+    {
+      "id": 2,
+      "name": "Casemiro",
+      "position": "DM",
+      "number": 18,
+      "year": 2022,
+      "image": "casemiro.jpg",
+      "encryption": "DMCS8",
+      "difficulty": "easy",
+      "nationality": "Brazil"
+    },
+    {
+      "id": 3,
+      "name": "Antony",
+      "position": "RW",
+      "number": 21,
+      "year": 2022,
+      "image": "antony.jpg",
+      "encryption": "RWAN1",
+      "difficulty": "medium",
+      "nationality": "Brazil"
+    },
+    {
+      "id": 4,
+      "name": "Tyrell Malacia",
+      "position": "LB",
+      "number": 12,
+      "year": 2022,
+      "image": "Tyrell_Malacia.jpg",
+      "encryption": "LBTM2",
+      "difficulty": "medium",
+      "nationality": "Netherlands"
+    },
+    {
+      "id": 5,
+      "name": "Christian Eriksen",
+      "position": "CM",
+      "number": 14,
+      "year": 2022,
+      "image": "Eriksen.jpg",
+      "encryption": "CMCE4",
+      "difficulty": "medium",
+      "nationality": "Denmark"
+    },
+    {
+      "id": 6,
+      "name": "Alejandro Garnacho",
+      "position": "LW",
+      "number": 49,
+      "year": 2022,
+      "image": "Garnacho.jpg",
+      "encryption": "LWAG9",
+      "difficulty": "hard",
+      "nationality": "Argentina"
+    },
+    {
+      "id": 7,
+      "name": "Tom Heaton",
+      "position": "GK",
+      "number": 22,
+      "year": 2022,
+      "image": "Heaton.jpg",
+      "encryption": "GKTH2",
+      "difficulty": "hard",
+      "nationality": "England"
+    },
+    {
+      "id": 8,
+      "name": "Anthony Elanga",
+      "position": "LW",
+      "number": 36,
+      "year": 2022,
+      "image": "elanga.jpg",
+      "encryption": "LWAE6",
+      "difficulty": "hard",
+      "nationality": "Sweden"
+    }
+  ]
+}
