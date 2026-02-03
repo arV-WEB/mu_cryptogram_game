@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Game - MU Crypto Game</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Tambahan style untuk gambar */
+        .player-image-container img {
+            width: 100%;
+            max-width: 736px;
+            height: auto;
+            object-fit: cover;
+            aspect-ratio: 736 / 920;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            display: block;
+            margin: 0 auto;
+        }
+        
+        /* Placeholder styling jika gambar gagal dimuat */
+        .player-image-container img[src=""] {
+            background: #333;
+            aspect-ratio: 736 / 920;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .player-image-container img[src=""]::before {
+            content: "Loading MU Player...";
+        }
+        
+        /* Animation untuk gambar */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .player-image-container img.loaded {
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        .game-controls .btn-small,
+        #hint-btn.btn-info {
+            background-color: #28a745 !important;
+            color: white !important;              /* Warna teks putih */
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container game-container">
+        <!-- Header Game -->
+        <div class="game-header">
+            <div class="game-stats">
+                <div class="stat-item">
+                    <i class="fas fa-heart"></i>
+                    <span id="lives">5</span> Nyawa
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-star"></i>
+                    <span id="score">0</span> Poin
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-chart-line"></i>
+                    Level <span id="level">1</span>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span id="correct-count">0</span>/10 Benar
+                </div>
+            </div>
+            
+            <div class="game-controls">
+                <a href="{{ url_for('index') }}" class="btn btn-small">
+                    <i class="fas fa-home"></i> Menu
+                </a>
+                <a href="{{ url_for('setting') }}" class="btn btn-small">
+                    <i class="fas fa-cog"></i> Pengaturan
+                </a>
+                <button id="hint-btn" class="btn btn-small btn-info">
+                    <i class="fas fa-lightbulb"></i> Petunjuk
+                </button>
+            </div>
+        </div>
+
+        <!-- Area Game Utama -->
+        <div class="game-main">
+            <!-- Progress Bar -->
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+                <div class="progress-text" id="progress-text">0/10</div>
+            </div>
+
+            <!-- Gambar Pemain -->
+            <div class="player-card">
+                <div class="player-image-container">
+                    <!-- PERBAIKAN DI SINI: Hapus src dari tag img, akan diisi oleh JavaScript -->
+                    <img id="player-image" src="" alt="Pemain Manchester United" 
+                         onerror="this.onerror=null; this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjYwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjYwMCIgZmlsbD0iI0RBQjFDMCIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiNGRkZGRkYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5NVSBQbGF5ZXI8L3RleHQ+PC9zdmc+';">
+                    <div class="image-overlay">
+                        <span id="year-display">Tahun: 2020</span>
+                        <span id="difficulty-display">Kesulitan: Medium</span>
+                    </div>
+                </div>
+                
+                <div class="player-info">
+                    <h3 id="player-clue">?</h3>
+                    <p class="hint-text" id="position-hint">Posisi: ?</p>
+                    <p class="hint-text" id="nationality-hint">Kebangsaan: ?</p>
+                </div>
+            </div>
+
+            <!-- Input Jawaban -->
+            <div class="answer-section">
+                <h3><i class="fas fa-key"></i> Masukkan Kode Enkripsi:</h3>
+                
+                <div class="input-group">
+                    <input type="text" 
+                           id="answer-input" 
+                           placeholder="Contoh: CMJL0" 
+                           maxlength="5"
+                           autocomplete="off"
+                           autocapitalize="characters">
+                    <button id="submit-btn" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> Submit
+                    </button>
+                </div>
+                
+                <div class="format-info">
+                    <p><i class="fas fa-info-circle"></i> Format: <code>POSISI + INISIAL + ANGKA</code> (5 karakter)</p>
+                    <p>Contoh: CM (posisi) + JL (inisial) + 0 (angka) = <strong>CMJL0</strong></p>
+                </div>
+            </div>
+
+            <!-- Feedback Area -->
+            <div class="feedback-area">
+                <div id="feedback-message" class="feedback-message"></div>
+                <div id="correct-answer" class="correct-answer"></div>
+            </div>
+
+            <!-- Game Over Modal -->
+            <div id="game-over-modal" class="modal">
+                <div class="modal-content">
+                    <h2><i class="fas fa-skull-crossbones"></i> GAME OVER!</h2>
+                    <p>Nyawa Anda telah habis.</p>
+                    <div class="final-stats">
+                        <p>Level yang dicapai: <span id="final-level">1</span></p>
+                        <p>Skor akhir: <span id="final-score">0</span></p>
+                    </div>
+                    <div class="modal-buttons">
+                        <button id="restart-btn" class="btn btn-primary">
+                            <i class="fas fa-redo"></i> Main Lagi
+                        </button>
+                        <a href="{{ url_for('index') }}" class="btn btn-secondary">
+                            <i class="fas fa-home"></i> Ke Menu
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Level Up Modal -->
+            <div id="level-up-modal" class="modal">
+                <div class="modal-content">
+                    <h2><i class="fas fa-trophy"></i> LEVEL UP!</h2>
+                    <p>Selamat! Anda naik ke level <span id="new-level">2</span></p>
+                    <p class="level-up-message">Tantangan semakin sulit!</p>
+                    <button id="continue-btn" class="btn btn-primary">
+                        <i class="fas fa-forward"></i> Lanjutkan
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Game -->
+        <div class="game-footer">
+            <p><i class="fas fa-history"></i> <span id="game-year">2020</span> | 
+               <i class="fas fa-fire"></i> <span id="game-difficulty">Medium</span></p>
+            <p class="encryption-key">
+                <strong>Kunci Enkripsi:</strong> 
+                <span id="encryption-example">A=GKDG1, B=GKDH6, C=GKSR2</span>
+            </p>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='game.js') }}"></script>
+    <script>
+        // Script tambahan untuk memastikan gambar dimuat dengan benar
+        document.addEventListener('DOMContentLoaded', function() {
+            const playerImage = document.getElementById('player-image');
+
+                        // Ambil referensi elemen
+            const hintBtn = document.getElementById('hint-btn');
+            const positionHint = document.getElementById('position-hint');
+            const nationalityHint = document.getElementById('nationality-hint');
+
+            // Tambahkan logika klik
+            hintBtn.addEventListener('click', function() {
+                // Logika menampilkan data yang sebelumnya tersembunyi
+                // Pastikan variabel data pemain (misal: 'currentPlayer') tersedia di scope ini
+                if (window.currentPlayer) {
+                    positionHint.textContent = `Posisi: ${window.currentPlayer.position}`;
+                    nationalityHint.textContent = `Kebangsaan: ${window.currentPlayer.nationality}`;
+                    
+                    // Efek visual sederhana saat ditekan
+                    hintBtn.style.opacity = '0.5';
+                    hintBtn.disabled = true; 
+                } else {
+                    // Fallback jika data belum dimuat
+                    alert("Petunjuk: Gunakan format POSISI + INISIAL + ANGKA TERAKHIR");
+                }
+            });
+            
+            // Function untuk memuat gambar
+            function loadImageWithFallback(imageElement, imagePath) {
+                return new Promise((resolve, reject) => {
+                    // Coba dari folder IMAGE (huruf besar)
+                    const primaryPath = `/static/IMAGE/${imagePath}`;
+                    const secondaryPath = `/static/image/${imagePath}`;
+                    
+                    const img = new Image();
+                    
+                    img.onload = function() {
+                        imageElement.src = this.src;
+                        imageElement.classList.add('loaded');
+                        resolve(true);
+                    };
+                    
+                    img.onerror = function() {
+                        // Coba path alternatif
+                        if (this.src === primaryPath) {
+                            this.src = secondaryPath;
+                        } else {
+                            // Fallback ke SVG base64 jika gambar tidak ditemukan
+                            imageElement.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjYwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjYwMCIgZmlsbD0iI0RBQjFDMCIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiNGRkZGRkYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5NVSBQbGF5ZXI8L3RleHQ+PC9zdmc+';
+                            resolve(false);
+                        }
+                    };
+                    
+                    // Mulai dengan path utama
+                    img.src = primaryPath;
+                });
+            }
+            
+            // Debug: Test akses ke folder IMAGE
+            console.log('Testing image folder access...');
+            fetch('/static/IMAGE/')
+                .then(response => {
+                    console.log('IMAGE folder status:', response.status);
+                })
+                .catch(err => {
+                    console.log('Cannot access IMAGE folder directly');
+                });
+        });
+        
+        // Function untuk debug manual
+        window.debugImage = function(imageName) {
+            const img = document.getElementById('player-image');
+            img.src = `/static/IMAGE/${imageName}`;
+            console.log('Testing image:', `/static/IMAGE/${imageName}`);
+            
+            img.onload = function() {
+                console.log('Image loaded successfully!');
+            };
+            
+            img.onerror = function() {
+                console.log('Image failed to load');
+            };
+        };
+    </script>
+</body>
+</html>

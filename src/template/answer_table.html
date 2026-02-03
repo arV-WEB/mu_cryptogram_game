@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabel Jawaban MU Crypto Game</title>
+    <style>
+        /* Tambahkan style sesuai kebutuhan */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #da291c;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #da291c;
+            text-align: center;
+        }
+        .encryption-code {
+            font-family: monospace;
+            background: #333;
+            color: white;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        
+        /* Style untuk tombol kembali */
+        .back-button {
+            display: inline-block;
+            margin: 20px 10px 0 0;
+            padding: 12px 24px;
+            background-color: #da291c;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .back-button:hover {
+            background-color: #b02117;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .back-button i {
+            margin-right: 8px;
+        }
+        
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .btn-green {
+            background-color: #28a745;
+        }
+        
+        .btn-green:hover {
+            background-color: #218838;
+        }
+        
+        .btn-yellow {
+            background-color: #ffc107;
+            color: #212529;
+        }
+        
+        .btn-yellow:hover {
+            background-color: #e0a800;
+        }
+        
+        @media (max-width: 768px) {
+            .button-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .back-button {
+                width: 100%;
+                text-align: center;
+                margin: 5px 0;
+            }
+            
+            table {
+                font-size: 14px;
+            }
+            
+            th, td {
+                padding: 6px;
+            }
+        }
+        
+        /* Style untuk responsif tabel */
+        .table-responsive {
+            overflow-x: auto;
+        }
+    </style>
+    <!-- Tambahkan Font Awesome untuk ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Hapus tombol dari atas, hanya judul -->
+        <h1>Tabel Jawaban MU Crypto Game</h1>
+        
+        <p>Berikut adalah tabel lengkap jawaban untuk semua pemain Manchester United berdasarkan sistem enkripsi yang digunakan dalam game.</p>
+        
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Huruf</th>
+                        <th>Nama Pemain</th>
+                        <th>Posisi</th>
+                        <th>Kode Posisi</th>
+                        <th>Inisial</th>
+                        <th>Nomor</th>
+                        <th>Kode Enkripsi</th>
+                        <th>Tahun</th>
+                        <th>Kesulitan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Data dengan kode yang benar -->
+                    <tr>
+                        <td>A</td>
+                        <td>David de Gea</td>
+                        <td>Goalkeeper</td>
+                        <td>GK</td>
+                        <td>DG</td>
+                        <td>1</td>
+                        <td><span class="encryption-code">GKDG1</span></td>
+                        <td>2020</td>
+                        <td>Mudah</td>
+                    </tr>
+                    <tr>
+                        <td>B</td>
+                        <td>Harry Maguire</td>
+                        <td>Center Back</td>
+                        <td>CB</td>
+                        <td>HM</td>
+                        <td>5</td>
+                        <td><span class="encryption-code">CBHM5</span></td>
+                        <td>2020</td>
+                        <td>Mudah</td>
+                    </tr>
+                    <tr>
+                        <td>C</td>
+                        <td>Bruno Fernandes</td>
+                        <td>Center Midfielder</td>
+                        <td>CM</td>
+                        <td>BF</td>
+                        <td>18</td>
+                        <td><span class="encryption-code">CMBF8</span></td>
+                        <td>2020</td>
+                        <td>Mudah</td>
+                    </tr>
+                    <tr>
+                        <td>D</td>
+                        <td>Marcus Rashford</td>
+                        <td>Left Winger</td>
+                        <td>LW</td>
+                        <td>MR</td>
+                        <td>10</td>
+                        <td><span class="encryption-code">LWMR0</span></td>
+                        <td>2020</td>
+                        <td>Sedang</td>
+                    </tr>
+                    <tr>
+                        <td>E</td>
+                        <td>Paul Pogba</td>
+                        <td>Center Midfielder</td>
+                        <td>CM</td>
+                        <td>PP</td>
+                        <td>6</td>
+                        <td><span class="encryption-code">CMPP6</span></td>
+                        <td>2020</td>
+                        <td>Sedang</td>
+                    </tr>
+                    <tr>
+                        <td>F</td>
+                        <td>Anthony Martial</td>
+                        <td>Center Forward</td>
+                        <td>CF</td>
+                        <td>AM</td>
+                        <td>9</td>
+                        <td><span class="encryption-code">CFAM9</span></td>
+                        <td>2020</td>
+                        <td>Sedang</td>
+                    </tr>
+                    <tr>
+                        <td>G</td>
+                        <td>Donny van de Beek</td>
+                        <td>Center Midfielder</td>
+                        <td>CM</td>
+                        <td>DB</td>
+                        <td>34</td>
+                        <td><span class="encryption-code">CMDB4</span></td>
+                        <td>2020</td>
+                        <td>Sulit</td>
+                    </tr>
+                    <tr>
+                        <td>H</td>
+                        <td>Alex Telles</td>
+                        <td>Left Back</td>
+                        <td>LB</td>
+                        <td>AT</td>
+                        <td>27</td>
+                        <td><span class="encryption-code">LBAT7</span></td>
+                        <td>2020</td>
+                        <td>Sulit</td>
+                    </tr>
+                    <tr>
+                        <td>I</td>
+                        <td>Edinson Cavani</td>
+                        <td>Center Forward</td>
+                        <td>CF</td>
+                        <td>EC</td>
+                        <td>7</td>
+                        <td><span class="encryption-code">CFEC7</span></td>
+                        <td>2020</td>
+                        <td>Sulit</td>
+                    </tr>
+                    <tr>
+                        <td>J</td>
+                        <td>Cristiano Ronaldo</td>
+                        <td>Center Forward</td>
+                        <td>CF</td>
+                        <td>CR</td>
+                        <td>7</td>
+                        <td><span class="encryption-code">CFCR7</span></td>
+                        <td>2021</td>
+                        <td>Mudah</td>
+                    </tr>
+                    <tr>
+                        <td>K</td>
+                        <td>Raphaël Varane</td>
+                        <td>Center Back</td>
+                        <td>CB</td>
+                        <td>RV</td>
+                        <td>19</td>
+                        <td><span class="encryption-code">CBRV9</span></td>
+                        <td>2021</td>
+                        <td>Mudah</td>
+                    </tr>
+                    <tr>
+                        <td>L</td>
+                        <td>Jadon Sancho</td>
+                        <td>Right Winger</td>
+                        <td>RW</td>
+                        <td>JS</td>
+                        <td>25</td>
+                        <td><span class="encryption-code">RWJS5</span></td>
+                        <td>2021</td>
+                        <td>Sedang</td>
+                    </tr>
+                    <tr>
+                        <td>M</td>
+                        <td>Dean Henderson</td>
+                        <td>Goalkeeper</td>
+                        <td>GK</td>
+                        <td>DH</td>
+                        <td>26</td>
+                        <td><span class="encryption-code">GKDH6</span></td>
+                        <td>2021</td>
+                        <td>Sedang</td>
+                    </tr>
+                    <tr>
+                        <td>N</td>
+                        <td>Victor Lindelöf</td>
+                        <td>Center Back</td>
+                        <td>CB</td>
+                        <td>VL</td>
+                        <td>2</td>
+                        <td><span class="encryption-code">CBVL2</span></td>
+                        <td>2021</td>
+                        <td>Sedang</td>
+                    </tr>
+                    <tr>
+                        <td>O</td>
+                        <td>Aaron Wan-Bissaka</td>
+                        <td>Right Back</td>
+                        <td>RB</td>
+                        <td>AW</td>
+                        <td>29</td>
+                        <td><span class="encryption-code">RBAW9</span></td>
+                        <td>2021</td>
+                        <td>Sulit</td>
+                    </tr>
+                    <tr>
+                        <td>P</td>
+                        <td>Fred</td>
+                        <td>Center Midfielder</td>
+                        <td>CM</td>
+                        <td>FR</td>
+                        <td>17</td>
+                        <td><span class="encryption-code">CMFR7</span></td>
+                        <td>2021</td>
+                        <td>Sulit</td>
+                    </tr>
+                    <tr>
+                        <td>Q</td>
+                        <td>Scott McTominay</td>
+                        <td>Center Midfielder</td>
+                        <td>CM</td>
+                        <td>SM</td>
+                        <td>39</td>
+                        <td><span class="encryption-code">CMSM9</span></td>
+                        <td>2021</td>
+                        <td>Sulit</td>
+                    </tr>
+                    <tr>
+                        <td>R</td>
+                        <td>Lisandro Martínez</td>
+                        <td>Center Back</td>
+                        <td>CB</td>
+                        <td>LM</td>
+                        <td>6</td>
+                        <td><span class="encryption-code">CBLM6</span></td>
+                        <td>2022</td>
+                        <td>Mudah</td>
+                    </tr>
+                    <tr>
+                        <td>S</td>
+                        <td>Casemiro</td>
+                        <td>Defensive Midfielder</td>
+                        <td>DM</td>
+                        <td>CS</td>
+                        <td>18</td>
+                        <td><span class="encryption-code">DMCS8</span></td>
+                        <td>2022</td>
+                        <td>Mudah</td>
+                    </tr>
+                    <tr>
+                        <td>T</td>
+                        <td>Antony</td>
+                        <td>Right Winger</td>
+                        <td>RW</td>
+                        <td>AN</td>
+                        <td>21</td>
+                        <td><span class="encryption-code">RWAN1</span></td>
+                        <td>2022</td>
+                        <td>Sedang</td>
+                    </tr>
+                    <tr>
+                        <td>U</td>
+                        <td>Tyrell Malacia</td>
+                        <td>Left Back</td>
+                        <td>LB</td>
+                        <td>TM</td>
+                        <td>12</td>
+                        <td><span class="encryption-code">LBTM2</span></td>
+                        <td>2022</td>
+                        <td>Sedang</td>
+                    </tr>
+                    <tr>
+                        <td>V</td>
+                        <td>Christian Eriksen</td>
+                        <td>Center Midfielder</td>
+                        <td>CM</td>
+                        <td>CE</td>
+                        <td>14</td>
+                        <td><span class="encryption-code">CMCE4</span></td>
+                        <td>2022</td>
+                        <td>Sedang</td>
+                    </tr>
+                    <tr>
+                        <td>W</td>
+                        <td>Alejandro Garnacho</td>
+                        <td>Left Winger</td>
+                        <td>LW</td>
+                        <td>AG</td>
+                        <td>49</td>
+                        <td><span class="encryption-code">LWAG9</span></td>
+                        <td>2022</td>
+                        <td>Sulit</td>
+                    </tr>
+                    <tr>
+                        <td>X</td>
+                        <td>Tom Heaton</td>
+                        <td>Goalkeeper</td>
+                        <td>GK</td>
+                        <td>TH</td>
+                        <td>22</td>
+                        <td><span class="encryption-code">GKTH2</span></td>
+                        <td>2022</td>
+                        <td>Sulit</td>
+                    </tr>
+                    <tr>
+                        <td>Y</td>
+                        <td>Anthony Elanga</td>
+                        <td>Left Winger</td>
+                        <td>LW</td>
+                        <td>AE</td>
+                        <td>36</td>
+                        <td><span class="encryption-code">LWAE6</span></td>
+                        <td>2022</td>
+                        <td>Sulit</td>
+                    </tr>
+                    <tr>
+                        <td>Z</td>
+                        <td>Phil Jones</td>
+                        <td>Center Back</td>
+                        <td>CB</td>
+                        <td>PJ</td>
+                        <td>4</td>
+                        <td><span class="encryption-code">CBPJ4</span></td>
+                        <td>2020</td>
+                        <td>Sulit</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <p>Catatan: Tabel ini berisi 26 pemain sesuai dengan alphabet A-Z. Setiap pemain memiliki kode enkripsi yang unik berdasarkan posisi, inisial, dan nomor punggung.</p>
+        
+        <p><strong>Rumus:</strong> <strong>Kode Enkripsi = Kode Posisi + Inisial + Digit Terakhir Nomor Punggung</strong></p>
+        
+        <!-- Tambahkan tombol hanya di bawah tabel -->
+        <div class="button-container">
+            <a href="{{ url_for('index') }}" class="back-button">
+                <i class="fas fa-arrow-left"></i> Kembali ke Menu Utama
+            </a>
+            <a href="{{ url_for('setting') }}" class="back-button btn-green">
+                <i class="fas fa-play"></i> Mulai Bermain
+            </a>
+            <a href="{{ url_for('tutorial') }}" class="back-button btn-yellow">
+                <i class="fas fa-graduation-cap"></i> Lihat Tutorial
+            </a>
+        </div>
+    </div>
+</body>
+</html>

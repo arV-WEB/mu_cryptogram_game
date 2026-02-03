@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial - MU Crypto Game</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Tambahan CSS untuk tutorial */
+        .tutorial-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .tutorial-nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .nav-link.active {
+            background: white;
+            color: #667eea;
+            border-color: white;
+        }
+
+        .tutorial-content {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+        }
+
+        .tutorial-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tutorial-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .step {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            align-items: center;
+        }
+
+        .step-number {
+            background: #667eea;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .step-content h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .step-visual {
+            margin-top: 15px;
+        }
+
+        .step-visual img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .code-example {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+        }
+
+        .code-breakdown {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 10px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+        }
+
+        .code-part {
+            background: #667eea;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        .code-result {
+            margin-top: 15px;
+            padding: 15px;
+            background: #e7f4e4;
+            border-radius: 5px;
+            border-left: 5px solid #28a745;
+        }
+
+        .format-diagram {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .format-row {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .format-cell {
+            width: 60px;
+            height: 60px;
+            background: #667eea;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            border-radius: 10px;
+        }
+
+        .format-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .position-table, .score-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .position-table th, .position-table td,
+        .score-table th, .score-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .position-table th, .score-table th {
+            background: #667eea;
+            color: white;
+        }
+
+        .position-table tr:nth-child(even),
+        .score-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .full-example {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .example-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+        }
+
+        .example-item code {
+            display: block;
+            background: #667eea;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        .lives-system {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .life-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #667eea;
+        }
+
+        .life-item i {
+            font-size: 2rem;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .tip-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid #667eea;
+            transition: transform 0.3s ease;
+        }
+
+        .tip-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .tip-card i {
+            font-size: 2.5rem;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .practice-area {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+
+        .practice-exercise {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .exercise-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+        }
+
+        .practice-input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            margin: 10px 0;
+            text-transform: uppercase;
+        }
+
+        .practice-feedback {
+            margin-left: 10px;
+            font-weight: bold;
+        }
+
+        .practice-feedback.correct {
+            color: #28a745;
+        }
+
+        .practice-feedback.incorrect {
+            color: #dc3545;
+        }
+
+        .tutorial-actions {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px 30px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+        }
+
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .tutorial-nav {
+                flex-direction: column;
+            }
+            
+            .step {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .tutorial-actions {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container tutorial-container">
+        <header class="header">
+            <h1><i class="fas fa-graduation-cap"></i> Tutorial & Panduan Game</h1>
+            <p>Pelajari cara bermain dan sistem enkripsi</p>
+        </header>
+
+        <main class="tutorial-main">
+            <!-- Navigasi Tutorial -->
+            <nav class="tutorial-nav">
+                <a href="#basic" class="nav-link active">Dasar Bermain</a>
+                <a href="#encryption" class="nav-link">Sistem Enkripsi</a>
+                <a href="#levels" class="nav-link">Level & Skor</a>
+                <a href="#tips" class="nav-link">Tips & Trik</a>
+            </nav>
+
+            <!-- Konten Tutorial -->
+            <div class="tutorial-content">
+                <!-- Bagian 1: Dasar Bermain -->
+                <section id="basic" class="tutorial-section active">
+                    <h2><i class="fas fa-play-circle"></i> Dasar-dasar Bermain</h2>
+                    
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Mulai Game</h3>
+                            <p>Pergi ke menu <strong>Pengaturan</strong> untuk memilih tahun pemain dan tingkat kesulitan.</p>
+                            <div class="step-visual">
+                                <div class="setting-visual">
+                                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; text-align: center;">
+                                        <h4 style="color: #667eea; margin-bottom: 15px;">Menu Pengaturan</h4>
+                                        <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                                            <div style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); min-width: 200px;">
+                                                <p style="font-weight: bold; color: #333;">Pilih Tahun</p>
+                                                <select style="width: 100%; padding: 8px; border-radius: 5px; border: 2px solid #ddd; margin-top: 10px;">
+                                                    <option>2020</option>
+                                                    <option>2021</option>
+                                                    <option>2022</option>
+                                                </select>
+                                            </div>
+                                            <div style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); min-width: 200px;">
+                                                <p style="font-weight: bold; color: #333;">Pilih Kesulitan</p>
+                                                <select style="width: 100%; padding: 8px; border-radius: 5px; border: 2px solid #ddd; margin-top: 10px;">
+                                                    <option>Mudah</option>
+                                                    <option>Sedang</option>
+                                                    <option>Sulit</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <button style="background: #667eea; color: white; border: none; padding: 10px 30px; border-radius: 5px; margin-top: 20px; font-weight: bold; cursor: pointer;">
+                                            MULAI GAME
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Tebak Pemain</h3>
+                            <p>Anda akan melihat gambar pemain Manchester United. Tugas Anda adalah menebak siapa pemain tersebut.</p>
+                            <div class="step-visual">
+                                <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; text-align: center;">
+                                    <h4 style="color: #667eea; margin-bottom: 15px;">Contoh Gambar Pemain</h4>
+                                    <!-- Gunakan gambar dari folder static Anda -->
+                                    <img src="{{ url_for('static', filename='IMAGE/bruno_fernandes.jpg') }}" 
+                                    alt="Bruno Fernandes"
+                                    style="width: 200px; height: 250px; object-fit: cover; border-radius: 10px; border: 3px solid #DA1C0D;">
+                                    <p style="margin-top: 15px; color: #666;">Tebak siapa pemain ini berdasarkan seragam dan ciri fisiknya</p>
+                                    <p style="font-size: 0.9rem; color: #888; font-style: italic;">Contoh: Bruno Fernandes</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Gunakan Kode Enkripsi</h3>
+                            <p>Daripada mengetik nama, Anda harus memasukkan <strong>kode enkripsi</strong> pemain tersebut.</p>
+                            <div class="step-visual">
+                                <div class="code-example">
+                                    <p style="font-weight: bold; color: #333; margin-bottom: 15px;">Contoh: Untuk Bruno Fernandes</p>
+                                    <div class="code-breakdown">
+                                        <span class="code-part">CM</span>
+                                        <span class="code-explanation">Posisi (Center Midfielder)</span>
+                                    </div>
+                                    <div class="code-breakdown">
+                                        <span class="code-part">BF</span>
+                                        <span class="code-explanation">Inisial (Bruno Fernandes)</span>
+                                    </div>
+                                    <div class="code-breakdown">
+                                        <span class="code-part">8</span>
+                                        <span class="code-explanation">Digit terakhir nomor (18)</span>
+                                    </div>
+                                    <div class="code-result">
+                                        <strong>Hasil: CMBF8</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Bagian 2: Sistem Enkripsi -->
+                <section id="encryption" class="tutorial-section">
+                    <h2><i class="fas fa-lock"></i> Sistem Enkripsi</h2>
+                    
+                    <div class="encryption-guide">
+                        <h3>Format Kode Enkripsi</h3>
+                        <p>Setiap kode enkripsi terdiri dari 5 karakter dengan format:</p>
+                        
+                        <div class="format-diagram">
+                            <div class="format-row">
+                                <div class="format-cell">XX</div>
+                                <div class="format-cell">YY</div>
+                                <div class="format-cell">Z</div>
+                            </div>
+                            <div class="format-row">
+                                <div class="format-label">Posisi</div>
+                                <div class="format-label">Inisial</div>
+                                <div class="format-label">Angka</div>
+                            </div>
+                        </div>
+
+                        <h4>Kode Posisi:</h4>
+                        <table class="position-table">
+                            <tr>
+                                <th>Posisi</th>
+                                <th>Kode</th>
+                                <th>Contoh Pemain</th>
+                            </tr>
+                            <tr>
+                                <td>Goalkeeper</td>
+                                <td>GK</td>
+                                <td>David de Gea</td>
+                            </tr>
+                            <tr>
+                                <td>Center Back</td>
+                                <td>CB</td>
+                                <td>Harry Maguire</td>
+                            </tr>
+                            <tr>
+                                <td>Center Midfielder</td>
+                                <td>CM</td>
+                                <td>Bruno Fernandes</td>
+                            </tr>
+                            <tr>
+                                <td>Left Winger</td>
+                                <td>LW</td>
+                                <td>Marcus Rashford</td>
+                            </tr>
+                            <tr>
+                                <td>Center Forward</td>
+                                <td>CF</td>
+                                <td>Cristiano Ronaldo</td>
+                            </tr>
+                            <tr>
+                                <td>Right Back</td>
+                                <td>RB</td>
+                                <td>Aaron Wan-Bissaka</td>
+                            </tr>
+                            <tr>
+                                <td>Left Back</td>
+                                <td>LB</td>
+                                <td>Alex Telles</td>
+                            </tr>
+                            <tr>
+                                <td>Defensive Midfielder</td>
+                                <td>DM</td>
+                                <td>Casemiro</td>
+                            </tr>
+                        </table>
+
+                        <h4>Contoh Lengkap:</h4>
+                        <div class="full-example">
+                            <div class="example-item">
+                                <strong>Marcus Rashford:</strong>
+                                <code>LWMR0</code>
+                                <p>LW (Left Winger) + MR (Marcus Rashford) + 0 (dari nomor 10)</p>
+                            </div>
+                            <div class="example-item">
+                                <strong>Cristiano Ronaldo:</strong>
+                                <code>CFCR7</code>
+                                <p>CF (Center Forward) + CR (Cristiano Ronaldo) + 7 (dari nomor 7)</p>
+                            </div>
+                            <div class="example-item">
+                                <strong>David de Gea:</strong>
+                                <code>GKDG1</code>
+                                <p>GK (Goalkeeper) + DG (David de Gea) + 1 (dari nomor 1)</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Bagian 3: Level & Skor -->
+                <section id="levels" class="tutorial-section">
+                    <h2><i class="fas fa-chart-line"></i> Sistem Level & Skor</h2>
+                    
+                    <div class="level-system">
+                        <h3>Kenaikan Level</h3>
+                        <ul style="list-style: none; padding-left: 0;">
+                            <li style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+                                <i class="fas fa-arrow-right" style="position: absolute; left: 0; color: #667eea;"></i>
+                                <strong>Level 1:</strong> Pemain utama (10 jawaban benar untuk naik)
+                            </li>
+                            <li style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+                                <i class="fas fa-arrow-right" style="position: absolute; left: 0; color: #667eea;"></i>
+                                <strong>Level 2:</strong> Pemain reguler + pemain utama
+                            </li>
+                            <li style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+                                <i class="fas fa-arrow-right" style="position: absolute; left: 0; color: #667eea;"></i>
+                                <strong>Level 3:</strong> Semua pemain termasuk pemain muda
+                            </li>
+                            <li style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+                                <i class="fas fa-arrow-right" style="position: absolute; left: 0; color: #667eea;"></i>
+                                <strong>Level 4+:</strong> Pemain dari berbagai musim
+                            </li>
+                        </ul>
+
+                        <h3>Sistem Nyawa</h3>
+                        <div class="lives-system">
+                            <div class="life-item">
+                                <i class="fas fa-heart" style="color: #dc3545;"></i>
+                                <p>Mulai dengan 5 nyawa</p>
+                            </div>
+                            <div class="life-item">
+                                <i class="fas fa-heart-broken" style="color: #dc3545;"></i>
+                                <p>Salah jawab = kehilangan 1 nyawa</p>
+                            </div>
+                            <div class="life-item">
+                                <i class="fas fa-redo" style="color: #28a745;"></i>
+                                <p>Nyawa habis = mulai dari awal level</p>
+                            </div>
+                        </div>
+
+                        <h3>Penghitungan Skor</h3>
+                        <table class="score-table">
+                            <tr>
+                                <th>Aksi</th>
+                                <th>Poin</th>
+                            </tr>
+                            <tr>
+                                <td>Jawaban benar</td>
+                                <td style="color: #28a745; font-weight: bold;">+10 poin</td>
+                            </tr>
+                            <tr>
+                                <td>Naik level</td>
+                                <td style="color: #28a745; font-weight: bold;">+100 poin</td>
+                            </tr>
+                            <tr>
+                                <td>Jawaban benar beruntun (3x+)</td>
+                                <td style="color: #28a745; font-weight: bold;">+5 poin per beruntun</td>
+                            </tr>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Bagian 4: Tips & Trik -->
+                <section id="tips" class="tutorial-section">
+                    <h2><i class="fas fa-lightbulb"></i> Tips & Trik</h2>
+                    
+                    <div class="tips-grid">
+                        <div class="tip-card">
+                            <i class="fas fa-search"></i>
+                            <h3>Perhatikan Detail</h3>
+                            <p>Lihat seragam, warna kulit, dan ciri khas pemain</p>
+                        </div>
+                        
+                        <div class="tip-card">
+                            <i class="fas fa-clock"></i>
+                            <h3>Hafalkan Kode Posisi</h3>
+                            <p>GK, CB, CM, LW dll. akan membantu menebak 2 karakter pertama</p>
+                        </div>
+                        
+                        <div class="tip-card">
+                            <i class="fas fa-user-friends"></i>
+                            <h3>Kenali Inisial</h3>
+                            <p>Biasakan dengan inisial pemain utama: BF, MR, CR7, dll.</p>
+                        </div>
+                        
+                        <div class="tip-card">
+                            <i class="fas fa-history"></i>
+                            <h3>Ingat Nomor Punggung</h3>
+                            <p>Nomor ikonik membantu: 7 (Ronaldo), 10 (Rashford), 18 (Fernandes)</p>
+                        </div>
+                    </div>
+
+                    <div class="practice-area">
+                        <h3>Area Latihan</h3>
+                        <p>Coba tebak kode enkripsi untuk pemain berikut:</p>
+                        
+                        <div class="practice-exercise">
+                            <div class="exercise-item">
+                                <p><strong>Pemain:</strong> David de Gea</p>
+                                <p><strong>Posisi:</strong> GK</p>
+                                <p><strong>Nomor:</strong> 1</p>
+                                <input type="text" class="practice-input" placeholder="Masukkan kode..." data-answer="GKDG1">
+                                <button class="btn btn-small check-btn">Cek</button>
+                                <span class="practice-feedback"></span>
+                            </div>
+                            
+                            <div class="exercise-item">
+                                <p><strong>Pemain:</strong> Harry Maguire</p>
+                                <p><strong>Posisi:</strong> CB</p>
+                                <p><strong>Nomor:</strong> 5</p>
+                                <input type="text" class="practice-input" placeholder="Masukkan kode..." data-answer="CBHM5">
+                                <button class="btn btn-small check-btn">Cek</button>
+                                <span class="practice-feedback"></span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Tombol Aksi -->
+            <div class="tutorial-actions">
+                <a href="{{ url_for('index') }}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> Kembali ke Menu
+                </a>
+                <a href="{{ url_for('setting') }}" class="btn btn-primary">
+                    <i class="fas fa-play"></i> Mulai Bermain
+                </a>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // JavaScript untuk menangani navigasi tutorial
+        document.addEventListener('DOMContentLoaded', function() {
+            // Element references
+            const navLinks = document.querySelectorAll('.nav-link');
+            const tutorialSections = document.querySelectorAll('.tutorial-section');
+            const checkButtons = document.querySelectorAll('.check-btn');
+            
+            // Fungsi untuk menampilkan section tertentu
+            function showSection(sectionId) {
+                // Sembunyikan semua section
+                tutorialSections.forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                // Tampilkan section yang dipilih
+                const activeSection = document.querySelector(sectionId);
+                if (activeSection) {
+                    activeSection.classList.add('active');
+                }
+                
+                // Update nav links
+                navLinks.forEach(link => {
+                    if (link.getAttribute('href') === sectionId) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+            }
+            
+            // Event listener untuk nav links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const sectionId = this.getAttribute('href');
+                    showSection(sectionId);
+                    
+                    // Scroll ke atas konten
+                    document.querySelector('.tutorial-content').scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Event listener untuk tombol cek di area latihan
+            checkButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const exerciseItem = this.closest('.exercise-item');
+                    const input = exerciseItem.querySelector('.practice-input');
+                    const feedback = exerciseItem.querySelector('.practice-feedback');
+                    const correctAnswer = input.getAttribute('data-answer');
+                    
+                    const userAnswer = input.value.trim().toUpperCase();
+                    
+                    if (!userAnswer) {
+                        feedback.textContent = 'Masukkan kode terlebih dahulu!';
+                        feedback.className = 'practice-feedback incorrect';
+                        return;
+                    }
+                    
+                    if (userAnswer === correctAnswer) {
+                        feedback.textContent = 'Benar! ✓';
+                        feedback.className = 'practice-feedback correct';
+                        input.style.borderColor = '#28a745';
+                    } else {
+                        feedback.textContent = `Salah! Jawaban benar: ${correctAnswer}`;
+                        feedback.className = 'practice-feedback incorrect';
+                        input.style.borderColor = '#dc3545';
+                    }
+                });
+            });
+            
+            // Event listener untuk input di area latihan (Enter key)
+            document.querySelectorAll('.practice-input').forEach(input => {
+                input.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        const button = this.closest('.exercise-item').querySelector('.check-btn');
+                        button.click();
+                    }
+                });
+                
+                // Auto uppercase
+                input.addEventListener('input', function() {
+                    this.value = this.value.toUpperCase();
+                });
+            });
+            
+            // Initialize dengan section pertama
+            showSection('#basic');
+        });
+    </script>
+</body>
+</html>

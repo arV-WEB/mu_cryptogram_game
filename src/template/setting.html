@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengaturan - MU Crypto Game</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container setting-container">
+        <header class="header">
+            <h1><i class="fas fa-cog"></i> Pengaturan Game</h1>
+            <p>Atur preferensi permainan Anda</p>
+        </header>
+
+        <main class="setting-main">
+            <form action="{{ url_for('setting') }}" method="POST" class="setting-form">
+                <!-- Pilihan Tahun -->
+                <div class="form-section">
+                    <h2><i class="fas fa-calendar-alt"></i> Pilih Tahun Pemain</h2>
+                    <p class="section-description">
+                        Pilih tahun untuk menentukan pemain Manchester United yang akan muncul dalam game.
+                    </p>
+                    
+                    <div class="year-options">
+                        <label class="year-option">
+                            <input type="radio" name="year" value="2020" checked>
+                            <div class="year-card">
+                                <h3>2020</h3>
+                                <p>Masa-masa Bruno Fernandes bergabung</p>
+                                <ul>
+                                    <li>David de Gea</li>
+                                    <li>Harry Maguire</li>
+                                    <li>Bruno Fernandes</li>
+                                </ul>
+                            </div>
+                        </label>
+                        
+                        <label class="year-option">
+                            <input type="radio" name="year" value="2021">
+                            <div class="year-card">
+                                <h3>2021</h3>
+                                <p>Kedatangan Ronaldo dan Varane</p>
+                                <ul>
+                                    <li>Cristiano Ronaldo</li>
+                                    <li>Raphaël Varane</li>
+                                    <li>Jadon Sancho</li>
+                                </ul>
+                            </div>
+                        </label>
+                        
+                        <label class="year-option">
+                            <input type="radio" name="year" value="2022">
+                            <div class="year-card">
+                                <h3>2022</h3>
+                                <p>Era Ten Hag dimulai</p>
+                                <ul>
+                                    <li>Lisandro Martínez</li>
+                                    <li>Casemiro</li>
+                                    <li>Antony</li>
+                                </ul>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Tingkat Kesulitan -->
+                <div class="form-section">
+                    <h2><i class="fas fa-chart-line"></i> Tingkat Kesulitan</h2>
+                    <p class="section-description">
+                        Pilih tingkat kesulitan yang sesuai dengan kemampuan Anda.
+                    </p>
+                    
+                    <div class="difficulty-options">
+                        <label class="difficulty-option">
+                            <input type="radio" name="difficulty" value="easy" checked>
+                            <div class="difficulty-card easy">
+                                <h3><i class="fas fa-smile"></i> Mudah</h3>
+                                <ul>
+                                    <li>Pemain utama dan terkenal</li>
+                                    <li>Waktu berpikir lebih lama</li>
+                                    <li>Petunjuk lebih banyak</li>
+                                    <li>Penalti kesalahan ringan</li>
+                                </ul>
+                            </div>
+                        </label>
+                        
+                        <label class="difficulty-option">
+                            <input type="radio" name="difficulty" value="medium">
+                            <div class="difficulty-card medium">
+                                <h3><i class="fas fa-meh"></i> Sedang</h3>
+                                <ul>
+                                    <li>Campuran pemain terkenal & pendukung</li>
+                                    <li>Waktu normal</li>
+                                    <li>Petunjuk terbatas</li>
+                                    <li>Penalti standar</li>
+                                </ul>
+                            </div>
+                        </label>
+                        
+                        <label class="difficulty-option">
+                            <input type="radio" name="difficulty" value="hard">
+                            <div class="difficulty-card hard">
+                                <h3><i class="fas fa-frown"></i> Sulit</h3>
+                                <ul>
+                                    <li>Semua pemain termasuk akademi</li>
+                                    <li>Waktu terbatas</li>
+                                    <li>Minimal petunjuk</li>
+                                    <li>Penalti berat</li>
+                                </ul>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Tombol Aksi -->
+                <div class="form-actions">
+                    <a href="{{ url_for('index') }}" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Kembali
+                    </a>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-play"></i> Mulai Game
+                    </button>
+                </div>
+            </form>
+
+            <!-- Preview Enkripsi -->
+            <div class="encryption-preview">
+                <h3><i class="fas fa-key"></i> Preview Sistem Enkripsi</h3>
+                <div class="preview-example">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Huruf</th>
+                                <th>Nama Pemain</th>
+                                <th>Posisi</th>
+                                <th>Kode</th>
+                                <th>Enkripsi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>A</td>
+                                <td>David de Gea</td>
+                                <td>GK</td>
+                                <td>DG</td>
+                                <td><code>GKDG1</code></td>
+                            </tr>
+                            <tr>
+                                <td>B</td>
+                                <td>Harry Maguire</td>
+                                <td>CB</td>
+                                <td>HM</td>
+                                <td><code>CBHM5</code></td>
+                            </tr>
+                            <tr>
+                                <td>C</td>
+                                <td>Bruno Fernandes</td>
+                                <td>CM</td>
+                                <td>BF</td>
+                                <td><code>CMBF8</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="preview-note">
+                        <strong>Catatan:</strong> Enkripsi = Posisi + Inisial + Digit Terakhir Nomor Punggung
+                    </p>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

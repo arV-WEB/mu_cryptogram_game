@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MU Crypto Game - Tebak Pemain MU</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fas fa-futbol"></i> MU CRYPTO GAME</h1>
+            <p class="subtitle">Tebak Pemain Manchester United dengan Kode Rahasia!</p>
+        </header>
+
+        <main class="main-content">
+            <div class="game-intro">
+                <div class="intro-card">
+                    <h2><i class="fas fa-gamepad"></i> Selamat Datang!</h2>
+                    <p>Game kriptografi yang menantang untuk menguji pengetahuan Anda tentang pemain Manchester United!</p>
+                    
+                    <div class="features">
+                        <div class="feature">
+                            <i class="fas fa-lock"></i>
+                            <h3>Sistem Enkripsi</h3>
+                            <p>Tebak nama pemain menggunakan kode enkripsi khusus</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-chart-line"></i>
+                            <h3>Level Berjenjang</h3>
+                            <p>Naik level setelah menebak 10 pemain dengan benar</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-heart"></i>
+                            <h3>Sistem Nyawa</h3>
+                            <p>5 nyawa, salah tebak = nyawa berkurang</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-cog"></i>
+                            <h3>Kustomisasi</h3>
+                            <p>Pilih tahun dan tingkat kesulitan</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <a href="{{ url_for('play') }}" class="btn btn-primary">
+                    <i class="fas fa-play"></i> Lanjutkan Game
+                </a>
+                <a href="{{ url_for('setting') }}" class="btn btn-secondary">
+                    <i class="fas fa-cog"></i> Pengaturan Baru
+                </a>
+                <a href="{{ url_for('tutorial') }}" class="btn btn-info">
+                    <i class="fas fa-book"></i> Tutorial & Panduan
+                </a>
+                <a href="{{ url_for('answer_table') }}" class="btn btn-info">
+                    <i class="fas fa-table"></i> Lihat Tabel Jawaban
+                </a>
+            </div>
+            
+
+            <div class="quick-info">
+                <h3><i class="fas fa-lightbulb"></i> Cara Bermain:</h3>
+                <ol>
+                    <li>Pilih tahun pemain MU di Pengaturan</li>
+                    <li>Lihat gambar pemain di layar</li>
+                    <li>Masukkan kode enkripsi yang tepat</li>
+                    <li>Kumpulkan 10 jawaban benar untuk naik level</li>
+                    <li>Jaga nyawa Anda tetap hidup!</li>
+                </ol>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>© 2024 MU Crypto Game - Tugas Kriptografi</p>
+            <p class="encryption-example">
+                <strong>Contoh Enkripsi:</strong> RONALDO → CMJLOCMDB6CMSM4GKDGICMNM3CBHM5CMDB6
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
